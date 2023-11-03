@@ -1,9 +1,9 @@
 const { Router } = require('express');
-
+const usuarioController = require('../controllers/usuariosController.js');
 const router = Router()
 
 router
-    .post('/usuarios')
+    .post('/usuarios', usuarioController.cadastrar)
     .get('usuarios')
     .get('/usuarios/id/:id')
     .put('/usuarios/id/:id')
