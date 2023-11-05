@@ -16,5 +16,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'produtos',
   })
-  return produtos
+  return produtos;
 };
