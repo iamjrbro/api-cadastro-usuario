@@ -10,7 +10,7 @@ class rolesController{
 
             res.status(201).send(roles)
         }catch(error){
-            res.status(400).send(error.message)
+            res.status(400).send({message:error.message})
         }
     }
 }

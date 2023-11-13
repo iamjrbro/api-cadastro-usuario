@@ -2,7 +2,7 @@ const { UUIDV4 } = require("sequelize")
 
 class rolesService{
     async cadastrar(dto){
-        const role = database.roles.findOne({
+        const role = await database.roles.findOne({
             where:{
                 nome:dto.nome
             }
@@ -11,7 +11,7 @@ class rolesService{
             throw new Error('ROLE JÁ POSSUI CADASTRO')
         }
         try{
-            const newRole = database.roles.create({
+            const newRole = await database.roles.create({
                 id:UUIDV4,
                 nome: dto.nome,
                 descricao: dto.descricao
