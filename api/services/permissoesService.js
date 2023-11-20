@@ -23,3 +23,5 @@ class permissoesService{
 }
 
 module.exports = permissoesService;
+
+
