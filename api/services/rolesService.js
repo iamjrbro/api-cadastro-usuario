@@ -1,4 +1,6 @@
 const { UUIDV4 } = require("sequelize")
+const database = require('./modules')
+const rolesController = require('../controllers/rolesController.js')
 
 class rolesService{
     async cadastrar(dto){

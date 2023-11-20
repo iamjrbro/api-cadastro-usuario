@@ -5,7 +5,7 @@ class usuarioController{
    static async cadastrar(req,res){
         const {nome, email, senha} = req.body
         try{
-            const usuario = await usuarioService.cadastrar({nome, email, senha})
+            const usuario = await usuarioservice.cadastrar({nome, email, senha})
         } catch(error){
             res.status(400).send({message: error.message})
         }
