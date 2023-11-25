@@ -1,5 +1,5 @@
 const { UUIDV4 } = require("sequelize")
-const database = require('./modules')
+const database = require('../models')
 const rolesController = require('../controllers/rolesController.js')
 
 class rolesService{
@@ -26,3 +26,4 @@ class rolesService{
 }
 
 module.exports = rolesService;
+

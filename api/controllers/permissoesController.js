@@ -29,9 +29,9 @@ class permissoesController{
     }
 
     static async deletarPermissoesPorId(req,res){
+        const{id} = req.params
         try{
-            const{id} = req.params
-            const permissoes = await PermissoesService.deletarPermissoesPorId(id)
+            await PermissoesService.deletarPermissoesPorId(id)
             res.status(200).send({message:'PERMISSAO DELETADA COM SUCESSO!'})
         } catch(error){
             console.log('Message error', error.message)
@@ -39,9 +39,10 @@ class permissoesController{
     }
 
     static async editarPermissoes(req,res){
+        const {id} = req.params
+        const { nome, descricao } = req.body
         try{
-            const{id} = req.params
-            const permissoes = await PermissoesService.editarPermissoes(id)
+            const permissoes = await PermissoesService.editarPermissoes({id, nome, descricao})
             res.status(200).json(permissoes)
         }catch(error){
             console.log('Message error', error.message)

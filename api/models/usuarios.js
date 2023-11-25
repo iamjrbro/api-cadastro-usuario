@@ -10,7 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      usuarios.belongsToManys(models.roles, { 
+        //dentro do objeto serao passadas as informacoes da tabela pivot
+        through: models.usuarios_roles,  //recebe a pivot que sera utilizada
+        as: 'usuario_roles', //alias/apelido do relacionamento da tabela
+        foreignKey: 'usuario_id' //chave estrangeira da tabela, recebendo a coluna cadastrada dentro da tabela alias
+      })
+      usuarios.belongsToMany(models.permissoes,{
+        through: models.usuarios_permissoes,
+        as: 'usuario_permissoes',
+        foreignKey: 'usuario_id'
+      })
     }
   }
   usuarios.init({
