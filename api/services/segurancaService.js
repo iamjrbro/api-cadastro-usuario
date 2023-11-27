@@ -1,3 +1,4 @@
+const { cadastrarPermissoesRoles } = require('../controllers/segurancaController');
 const database = require('../models');
 const permissoes = require('../models/permissoes');
 const role = require('../models/role');
@@ -64,7 +65,32 @@ class segurancaService{
         })
         return novoUsuario;
     }
-}
+
+    //cadastrando as permissoes
+    async cadastrarPermissoesRoles(dto){
+        const role = await database.roles.findOne({
+            include:[{
+                model: database.permissoes,
+                as: 'roles_usuarios',
+                attributes:['id', 'nome', 'descricao']
+            }]
+        })
+        if(!role){
+            throw new Error ('ROLE NAO CADASTRADA') 
+        }
+        //buscando por todos os ids das permissoes e retornando todas as funcoes cadastradas
+        const permissoesCadastradas = await database.permissoes.findAll({
+            where:{
+                id:{
+                    [database.Sequelize.Op.in]: dto.permissoes
+                }
+            }
+        })
+    }
+
+};
+
+
 
 module.exports = segurancaService;
 
