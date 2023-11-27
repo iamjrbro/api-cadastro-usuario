@@ -11,11 +11,11 @@ module.exports = app => {
   app.use(
     bodyParser.json(),
     auth,
-    seguranca,
     usuarios,
     roles,
     produto,
-    permissoes
+    permissoes,
+    seguranca,
   )
 };
 
