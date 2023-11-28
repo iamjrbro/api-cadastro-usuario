@@ -86,6 +86,22 @@ class segurancaService{
                 }
             }
         })
+        //removendo a role
+        await usuario.removeRoles_Usuario(role.roles_usuarios)
+        //adicionando o update da role
+        await usuario.addRoles_usuarios(permissoesCadastradas)
+
+        const novaRole = await database.role.findOne({
+            include:[{
+                model: database.permissoes,
+                as: 'roles_usuarios',
+                attributes: ['id', 'nome', 'descricao']
+            }],
+            where:{
+                id: dto.roleId
+            }
+        })
+        return novaRole;
     }
 
 };
